@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/addons/p5.sound.min.js"></script>
+		<link rel="stylesheet" href="style.css" />
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<main>
+			<div class="ui-panel">
+				<div class="oneColRow">
+					<h1>INDENT TOOL</h1>
+					<p class="ui-text">
+						Click on a single tile to select it. Click on it again to deselect.
+						Click and drag to select multiple tiles at once in a row. Do the
+						same thing on already selected (black) tiles to deselect all of them
+						at once. Move individual tiles or whole blocks by holding SHIFT and
+						dragging them to the left or the right of the row.
+					</p>
+				</div>
+
+				<form>
+					<!-- Width -->
+					<div class="twoColsRow label-text">
+						<div>
+							<label for="widthSlider">Width</label>
+						</div>
+						<div>
+							<input
+								type="number"
+								id="widthInput"
+								min="200"
+								max="1300"
+								value="600"
+							/>
+							<span>px</span>
+						</div>
+					</div>
+					<div class="oneColRow">
+						<div>
+							<input
+								type="range"
+								id="widthSlider"
+								min="200"
+								max="1300"
+								value="600"
+							/>
+						</div>
+					</div>
+
+					<div class="oneColRow" style="height: 30px"></div>
+
+					<!-- Height -->
+					<div class="twoColsRow label-text">
+						<div>
+							<label for="heightSlider">Height</label>
+						</div>
+						<div>
+							<input
+								type="number"
+								id="heightInput"
+								min="200"
+								max="800"
+								value="600"
+							/>
+							<span>px</span>
+						</div>
+					</div>
+					<div class="oneColRow">
+						<input
+							type="range"
+							id="heightSlider"
+							min="200"
+							max="800"
+							value="600"
+						/>
+					</div>
+				</form>
+
+				<div class="oneColRow" style="height: 20px"></div>
+
+				<div class="twoColsRow label-text">
+					<div>
+						<label for="numButt-tilesX">Tiles X</label>
+					</div>
+					<div>
+						<input
+							type="number"
+							id="numButt-tilesX"
+							value="8"
+							min="4"
+							max="50"
+						/>
+					</div>
+				</div>
+				<div class="twoColsRow label-text">
+					<div>
+						<label for="numButt-tilesY">Tiles Y</label>
+					</div>
+					<div>
+						<input
+							type="number"
+							id="numButt-tilesY"
+							value="8"
+							min="4"
+							max="50"
+						/>
+					</div>
+				</div>
+				<div class="oneColRow" style="height: 20px"></div>
+				<div class="twoColsRow">
+					<div>
+						<button type="button" id="saveCanvasBttn">Save</button>
+					</div>
+					<div>
+						<button type="button" id="cleanCanvasBttn">Clear Canvas</button>
+					</div>
+				</div>
+				<div class="oneColRow" style="height: 20px"></div>
+				<div class="oneColRow">
+					<div>
+						<input type="checkbox" id="checkboxShowGrid" checked />
+						<label for="checkboxShowGrid">Show Grid</label>
+					</div>
+				</div>
+				<div class="oneColRow">
+					<p class="ui-text">
+						This application is part of the Project Module "TOOLS: Shapes
+						without meaning." Supervision: Stephanie Specht. SoSe 2025.
+						Department Typography and Type Design. Bauhaus Universität Weimar.
+					</p>
+				</div>
+			</div>
+
+			<div id="artboard">
+				<div id="canvasWrapper"></div>
+			</div>
+		</main>
+		<script src="sketch.js"></script>
+	</body>
+</html>
