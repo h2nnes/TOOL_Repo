@@ -80,6 +80,13 @@ function setup() {
     heightInput.value = heightSlider.value;
     resizeCanvasFromSliders();
   });
+
+  // Verhindern das Leertaste scrollen auslöst
+  window.addEventListener("keydown", function (e) {
+    if (e.code === "Space") {
+      e.preventDefault();
+    }
+  });
 }
 
 function draw() {

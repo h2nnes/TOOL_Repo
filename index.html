@@ -4,25 +4,44 @@
 		<script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/addons/p5.sound.min.js"></script>
 		<link rel="stylesheet" href="style.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
 		<meta charset="utf-8" />
 	</head>
 	<body>
 		<main>
 			<div class="ui-panel">
 				<div class="oneColRow">
-					<h1>INDENT TOOL</h1>
-					<p class="ui-text">
-						Click on a single tile to select it. Click on it again to deselect.
-						Click and drag to select multiple tiles at once in a row. Do the
-						same thing on already selected (black) tiles to deselect all of them
-						at once. Move individual tiles or whole blocks by holding SHIFT and
-						dragging them to the left or the right of the row.
+					<p class="nav-text">
+						<span><a class="hover-underline" href="#tool-begin">Tool,</a></span>
+						<span
+							><a class="hover-underline" href="#instructions"
+								>instructions,</a
+							></span
+						>
+						<a class="hover-underline" href="#idea">idea</a>
 					</p>
 				</div>
 
+				<div class="oneColRow" style="height: 30px"></div>
+
+				<div class="oneColRow">
+					<p class="ui-text">
+						<span style="font-style: italic">indent.it</span> is an intuitive
+						typesetting tool developed by Hannes Altmann that lets you
+						experiment with indentation of text lines. Designed for use ahead of
+						an editorial design project, it helps generate inspiration and
+						quickly visualize layout ideas.
+					</p>
+				</div>
+
+				<div class="oneColRow" style="height: 30px"></div>
+
 				<form>
 					<!-- Width -->
-					<div class="twoColsRow label-text">
+					<div class="twoColsRow label-text" id="tool-begin">
 						<div>
 							<label for="widthSlider">Width</label>
 						</div>
@@ -78,7 +97,7 @@
 					</div>
 				</form>
 
-				<div class="oneColRow" style="height: 20px"></div>
+				<div class="oneColRow" style="height: 30px"></div>
 
 				<div class="twoColsRow label-text">
 					<div>
@@ -109,13 +128,9 @@
 					</div>
 				</div>
 				<div class="oneColRow" style="height: 20px"></div>
-				<div class="twoColsRow">
-					<div>
-						<button type="button" id="saveCanvasBttn">Save</button>
-					</div>
-					<div>
-						<button type="button" id="cleanCanvasBttn">Clear Canvas</button>
-					</div>
+				<div class="oneColRow" id="buttonRow">
+					<button type="button" id="saveCanvasBttn">Save</button>
+					<button type="button" id="cleanCanvasBttn">Clear Canvas</button>
 				</div>
 				<div class="oneColRow" style="height: 20px"></div>
 				<div class="oneColRow">
@@ -124,8 +139,68 @@
 						<label for="checkboxShowGrid">Show Grid</label>
 					</div>
 				</div>
+
+				<div class="oneColRow" style="height: 30px"></div>
+
+				<div class="oneColRow" id="instructions">
+					<p class="ui-text">
+						<kbd>Click <i class="fa fa-mouse-pointer"></i></kbd> on a tile to
+						select it. <kbd>Click <i class="fa fa-mouse-pointer"></i></kbd> it
+						again to deselect. You can select multiple tiles in a row by
+						clicking and dragging across them horizontally, then releasing the
+						mouse button. To deselect multiple tiles, use the same gesture on
+						already selected ones. To move a tile or an entire row horizontally
+						along the grid, hold <kbd>Shift</kbd> +
+						<kbd>Click <i class="fa fa-mouse-pointer"></i></kbd> on it while
+						dragging left or right. If you want to select an entire block of
+						tiles, hold <kbd>Space</kbd> and draw a selection rectangle with
+						your mouse. Release to confirm the selection.
+					</p>
+				</div>
+
+				<div class="oneColRow" style="height: 30px"></div>
+
+				<div class="oneColRow">
+					<p class="ui-text" id="idea">
+						My tool is intended to be used to play intuitively with typesetting
+						(particularly with indentations of text lines). It mimics the
+						functionality of the abacus, the interface is designed very minimal
+						and straightforward to guarantee an experimental user experience.
+						The output can be seen as „templates“ of experimental (or
+						conventional) text line arrangements that can serve as inspiration
+						for your next editorial typesetting project.
+					</p>
+				</div>
+
+				<div class="oneColRow" style="height: 30px"></div>
+
+				<div class="oneColRow">
+					<img
+						src="Images/abacus_historic.png"
+						alt="the abacus"
+						style="width: 200px"
+					/>
+				</div>
+
+				<div class="oneColRow" style="height: 30px"></div>
+
 				<div class="oneColRow">
 					<p class="ui-text">
+						The idea for the tool really came from a personal desire to have an
+						environment where I could test, experiment and try out new things
+						within editorial typesetting and to be able to do this as fast,
+						intuitive and effortless as possible (unlike in InDesign). For one,
+						the realization is inspired by the mechanics of the abacus but also
+						by manual typesetting methods from the letterpress era, when movable
+						type (metal sorts) was composed by hand on a composing stick for
+						each page by workers called compositors.
+					</p>
+				</div>
+
+				<div class="oneColRow" style="height: 30px"></div>
+
+				<div class="oneColRow">
+					<p class="mini-text">
 						This application is part of the Project Module "TOOLS: Shapes
 						without meaning." Supervision: Stephanie Specht. SoSe 2025.
 						Department Typography and Type Design. Bauhaus Universität Weimar.
