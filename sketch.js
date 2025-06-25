@@ -100,13 +100,14 @@ function draw() {
 }
 
 function drawGrid() {
-  stroke(200); // Farbe der Gitterlinien
 
   for (let x = 0; x < tilesX; x++) {
     for (let y = 0; y < tilesY; y++) {
       if (gridState[x][y]) {
+        noStroke();
         fill(0); // schwarze Zelle
       } else {
+        stroke(200); // Farbe der Gitterlinien
         noFill(); // leere Zelle
       }
       rect(x * tileW, y * tileH, tileW, tileH);
