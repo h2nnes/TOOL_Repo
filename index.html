@@ -132,7 +132,34 @@
 					<button type="button" id="saveCanvasBttn">Save</button>
 					<button type="button" id="cleanCanvasBttn">Clear Canvas</button>
 				</div>
+
 				<div class="oneColRow" style="height: 20px"></div>
+
+				<div class="oneColRow">
+					<p class="label-text">Ecken-Stil</p>
+					<label class="ui-text">
+						<input
+							type="radio"
+							name="cornerStyle"
+							value="sharp"
+							onchange="console.log('Auswahl: sharp')"
+							checked
+						/>
+						Kantig </label
+					><br />
+					<label class="ui-text">
+						<input
+							type="radio"
+							name="cornerStyle"
+							value="rounded"
+							onchange="console.log('Auswahl: round')"
+						/>
+						Abgerundet
+					</label>
+				</div>
+
+				<div class="oneColRow" style="height: 20px"></div>
+
 				<div class="oneColRow">
 					<div>
 						<input type="checkbox" id="checkboxShowGrid" checked />

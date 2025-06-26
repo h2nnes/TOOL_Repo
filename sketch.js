@@ -100,32 +100,37 @@ function draw() {
 }
 
 function drawGrid() {
+  stroke(200); // Farbe der Gitterlinien
+  noFill();    // keine Füllung – nur Rahmen
 
   for (let x = 0; x < tilesX; x++) {
     for (let y = 0; y < tilesY; y++) {
-      if (gridState[x][y]) {
-        noStroke();
-        fill(0); // schwarze Zelle
-      } else {
-        stroke(200); // Farbe der Gitterlinien
-        noFill(); // leere Zelle
-      }
       rect(x * tileW, y * tileH, tileW, tileH);
     }
   }
 }
 
+
 function drawBlocks() {
-  noStroke();
+  stroke(0);
+
+  // --- Ecke-Stil ermitteln ---
+  const selected = document.querySelector('input[name="cornerStyle"]:checked');
+  const cornerStyle = selected ? selected.value : "sharp";
+  const cornerRadius = (cornerStyle === "rounded") ? 50 : 0;
+
+  console.log("Neuer Eckenstil:", cornerStyle, cornerRadius);
   fill(0);
+
 
   for (let block of blocks) {
     rect(
       block.blockStartCol * tileW,
       block.blockRow * tileH,
       block.blockWidth * tileW,
-      tileH
-    );
+      tileH,
+      cornerRadius
+    )
   }
 }
 
