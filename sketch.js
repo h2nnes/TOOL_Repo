@@ -8,6 +8,7 @@ var numButtTilesX = document.getElementById("numButt-tilesX");
 var numButtTilesY = document.getElementById("numButt-tilesY");
 var clearCanvasButton = document.getElementById("cleanCanvasBttn");
 var saveCanvasButton = document.getElementById("saveCanvasBttn");
+var resetButton = document.getElementById("resetGridButton");
 var checkboxShowGrid = document.getElementById("checkboxShowGrid");
 
 // Initiale Synchronisierung sicherstellen
@@ -60,6 +61,7 @@ function setup() {
   numButtTilesY.addEventListener("input", adjustGridFromSliders);
   clearCanvasButton.addEventListener("click", clearGrid);
   saveCanvasButton.addEventListener("click", saveCurrentCanvas);
+  resetButton.addEventListener("click", resetGridToDefaults);
 
   widthInput.addEventListener("input", () => {
     widthSlider.value = widthInput.value;
@@ -315,6 +317,36 @@ function clearGrid() {
   blocks = [];
 
   redraw(); // falls du noLoop verwendest
+}
+
+
+function resetGridToDefaults() {
+  // Standardwerte
+  const defaultWidth = 600;
+  const defaultHeight = 600;
+  const defaultTilesX = 8;
+  const defaultTilesY = 8;
+
+  // Werte zurücksetzen
+  document.getElementById("widthInput").value = defaultWidth;
+  document.getElementById("widthSlider").value = defaultWidth;
+
+  document.getElementById("heightInput").value = defaultHeight;
+  document.getElementById("heightSlider").value = defaultHeight;
+
+  document.getElementById("numButt-tilesX").value = defaultTilesX;
+  document.getElementById("numButt-tilesY").value = defaultTilesY;
+
+  // Canvas aktualisieren
+  resizeCanvas(defaultWidth, defaultHeight);
+  tilesX = defaultTilesX;
+  tilesY = defaultTilesY;
+
+  // Neu berechnen & neu zeichnen
+  detectTileSize();
+
+  detectBlocks();
+  redraw();
 }
 
 
