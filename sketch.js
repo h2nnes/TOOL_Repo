@@ -1,3 +1,13 @@
+// --- Dynamische Canvasgrenzen ---
+const MIN_WIDTH = 200;
+const MIN_HEIGHT = 200;
+const ARTBOARD_PADDING = 50;
+
+// Max-Tiles definieren
+const MAX_TILES = 200;
+
+const DEFAULT_GRID_LINE_COLOR = "#D3D3D3"; // entspricht 'lightgray'
+
 const widthInput = document.getElementById("widthInput");
 const widthSlider = document.getElementById("widthSlider");
 const heightInput = document.getElementById("heightInput");
@@ -8,8 +18,11 @@ var numButtTilesX = document.getElementById("numButt-tilesX");
 var numButtTilesY = document.getElementById("numButt-tilesY");
 var clearCanvasButton = document.getElementById("cleanCanvasBttn");
 var saveCanvasButton = document.getElementById("saveCanvasBttn");
-var resetButton = document.getElementById("resetGridButton");
+var resetButton = document.getElementById("resetGridBttn");
 var checkboxShowGrid = document.getElementById("checkboxShowGrid");
+
+const gridColorButton = document.getElementById("gridColorButton");
+const gridColorPicker = document.getElementById("gridColorPicker");
 
 // Initiale Synchronisierung sicherstellen
 widthSlider.value = widthInput.value;
@@ -18,6 +31,8 @@ heightSlider.value = heightInput.value;
 let tilesX, tilesY, tileW, tileH;
 let gridState = []; // speichert, ob Zelle aktiv (true) oder inaktiv (false)
 let blocks = []; // Globale Liste aller gefundenen Rechtecke
+let gridLineColor = DEFAULT_GRID_LINE_COLOR; // Startfarbe der Gitterlinien
+
 
 let isDragging = false; // Flag, ob gerade ein Ziehvorgang läuft
 
@@ -40,6 +55,13 @@ let marqueeEndY = null;
 let isMarqueeSelecting = false;
 
 function setup() {
+  const { maxWidth, maxHeight } = getAvailableCanvasSize();
+
+  // Max-Werte setzen
+  widthInput.max = widthSlider.max = maxWidth;
+  heightInput.max = heightSlider.max = maxHeight;
+
+  
   // Initiale Synchronisierung sicherstellen
   widthSlider.value = widthInput.value;
   heightSlider.value = heightInput.value;
@@ -59,6 +81,8 @@ function setup() {
   heightSlider.addEventListener("input", resizeCanvasFromSliders);
   numButtTilesX.addEventListener("input", adjustGridFromSliders);
   numButtTilesY.addEventListener("input", adjustGridFromSliders);
+  numButtTilesX.addEventListener('input', clampTileInputWhileTyping);
+  numButtTilesY.addEventListener('input', clampTileInputWhileTyping);
   clearCanvasButton.addEventListener("click", clearGrid);
   saveCanvasButton.addEventListener("click", saveCurrentCanvas);
   resetButton.addEventListener("click", resetGridToDefaults);
@@ -89,6 +113,15 @@ function setup() {
       e.preventDefault();
     }
   });
+
+  gridColorButton.addEventListener("click", () => {
+    gridColorPicker.click(); // Öffnet den Color-Picker
+  });
+
+  gridColorPicker.addEventListener("input", (e) => {
+    gridLineColor = e.target.value; // Neue Farbe setzen
+    redraw(); // Canvas neu zeichnen (nur nötig bei noLoop)
+  });
 }
 
 function draw() {
@@ -102,7 +135,7 @@ function draw() {
 }
 
 function drawGrid() {
-  stroke(200); // Farbe der Gitterlinien
+  stroke(gridLineColor); // Farbe der Gitterlinien
   noFill();    // keine Füllung – nur Rahmen
 
   for (let x = 0; x < tilesX; x++) {
@@ -321,6 +354,9 @@ function clearGrid() {
 
 
 function resetGridToDefaults() {
+	// Reset Grid Line Color
+	gridLineColor = DEFAULT_GRID_LINE_COLOR;
+
   // Standardwerte
   const defaultWidth = 600;
   const defaultHeight = 600;
@@ -443,4 +479,73 @@ function detectTileSize() {
   tileH = height / tilesY;
 }
 
+
+// UI-Panel-Breite berücksichtigen
+function getAvailableCanvasSize() {
+  const panel = document.querySelector(".ui-panel");
+  const panelWidth = panel ? panel.offsetWidth : 0;
+
+  const maxWidth = window.innerWidth - panelWidth - 2 * ARTBOARD_PADDING;
+  const maxHeight = window.innerHeight - 2 * ARTBOARD_PADDING;
+
+  return {
+    maxWidth: Math.max(MIN_WIDTH, maxWidth),
+    maxHeight: Math.max(MIN_HEIGHT, maxHeight)
+  };
+}
+
+function clamp(val, min, max) {
+  return Math.min(Math.max(val, min), max);
+}
+
+
+// Funktion zur Begrenzung des Tile Number Inputs
+function clampTileInputWhileTyping(event) {
+  let val = parseInt(event.target.value);
+  if (isNaN(val) || val < 1) val = 1;
+  if (val > MAX_TILES) val = MAX_TILES;
+  event.target.value = val;
+
+  adjustGridFromSliders();
+}
+
+
+
+
+
+
+
+
+// ----------- Wiederholtes Klicken bei Halten der Maus für X und Y -----------
+
+let repeatIntervalId = null;
+
+function changeValue(inputId, delta) {
+  const input = document.getElementById(inputId);
+  const newValue = clamp(parseInt(input.value) + delta, 1, MAX_TILES); // Max ggf. anpassen
+  input.value = newValue;
+  adjustGridFromSliders(); // Aktualisiert das Grid
+}
+
+function startAutoRepeat(inputId, delta) {
+  changeValue(inputId, delta); // Sofort ändern
+  repeatIntervalId = setInterval(() => changeValue(inputId, delta), 50); // Dann wiederholen
+}
+
+function stopAutoRepeat() {
+  clearInterval(repeatIntervalId);
+  repeatIntervalId = null;
+}
+
+// --- Event-Handler für X-Achse ---
+document.getElementById("increaseX").addEventListener("mousedown", () => startAutoRepeat("numButt-tilesX", 1));
+document.getElementById("decreaseX").addEventListener("mousedown", () => startAutoRepeat("numButt-tilesX", -1));
+
+// --- Event-Handler für Y-Achse ---
+document.getElementById("increaseY").addEventListener("mousedown", () => startAutoRepeat("numButt-tilesY", 1));
+document.getElementById("decreaseY").addEventListener("mousedown", () => startAutoRepeat("numButt-tilesY", -1));
+
+// Stoppen bei Maus loslassen oder Mausverlieren
+document.addEventListener("mouseup", stopAutoRepeat);
+document.addEventListener("mouseleave", stopAutoRepeat);
 

@@ -68,6 +68,40 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: "NewEdge666";
+  src: url(Fonts/NewEdge666_Test/NewEdge666Test-Light.otf) format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  ascent-override: 100%;
+}
+
+@font-face {
+  font-family: "NewEdge666";
+  src: url(Fonts/NewEdge666_Test/NewEdge666Test-Regular.otf) format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  ascent-override: 100%;
+}
+
+@font-face {
+  font-family: "ArmandGrotesk";
+  src: url(Fonts/ArmandGrotesk_Test/ArmandGroteskTest-Light.otf) format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ArmandGrotesk";
+  src: url(Fonts/ArmandGrotesk_Test/ArmandGroteskTest-Regular.otf) format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+/* Globale Stile & Reset */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -85,39 +119,19 @@ canvas {
   display: block;
 }
 
-main {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  height: 100vh;
-}
-
-h1 {
-  font-family:"MartinaPlantijn";
-  font-weight: 400;
-  font-style: normal;
-  font-size: 68px;
-}
-
 a{
   color: black;
   text-decoration: none;
 }
 
 
-kbd {
-  background-color: #eee;
-  border-radius: 3px;
-  border: 1px solid #b4b4b4;
-  box-shadow:
-    0 1px 1px rgba(0, 0, 0, 0.2),
-    0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
-  color: #333;
-  display: inline-block;
-  font-size: 0.85em;
-  font-weight: 700;
-  line-height: 1;
-  padding: 2px 4px;
-  white-space: nowrap;
+
+/* Hauptlayout */
+
+main {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  height: 100vh;
 }
 
 #ui {
@@ -126,60 +140,15 @@ kbd {
 }
 
 
-.ui-panel {
-  display: grid;
-  grid-auto-rows: max-content;
-  border: 1px solid black;
-  gap: 0;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-family:"MartinaPlantijn";
-  font-weight: 400;
-  font-style: normal;
-  overflow-y: auto;
-  direction: rtl; /* Rechts-nach-links Richtung Scrollbar */
-  scroll-behavior: smooth;
-}
 
-.ui-panel * {
-  direction: ltr; /* Inhalt wieder normal links-nach-rechts */
-}
-
-.oneColRow {
-  background: white;
-}
-
-.twoColsRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background: white;
-  /* border: 1px solid black; */
-}
-
-.twoColsRow > div {
-  /* border: 1px solid black; */
-  background: white;
-  display: flex;
-  align-items: center;
-}
-
-.ui-text {
-  line-height: 1.2;
-  font-size: 16px;
-  margin: 0;
-}
-
-.label-text {
-  line-height: 1.3;
-  font-size: 26px;
-  margin: 0;
-}
+/* Typografie */
 
 .nav-text {
-  line-height: 1.1;
-  font-size: 40px;
+  font-family: 'MartinaPlantijn';
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.2;
+  font-size: 30px;
   margin: 0;
   padding-bottom: 4px;
 }
@@ -190,77 +159,119 @@ kbd {
   margin: 0;
 }
 
+.ui-text {
+  line-height: 1.2;
+  font-size: 16px;
+  margin: 0;
+}
+
+.groteskSmall {
+  font-family: "NewEdge666";
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.groteskBig {
+  font-family: "NewEdge666";
+  font-weight: 300;
+  font-size: 36px;
+}
+
+
+
+/* Layout-Komponenten */
+
 #artboard {
   background: rgb(238, 238, 238);
-  border: 1px solid black;
-  border-left: none;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-input[type="range"],
-input[type="number"] {
-  width: 100%;
-}
-
-#saveCanvasBttn {
-  font-family: "MartinaPlantijn";
+.ui-panel {
+  display: grid;
+  grid-auto-rows: max-content;
+  gap: 0;
+  padding: 25px;
+  font-family:"MartinaPlantijn";
   font-weight: 400;
-  font-style: normal;
-  font-size: 26px;
+  overflow-x: hidden;     /* verhindert horizontales Scrollen */
+  overflow-y: auto;       /* erlaubt vertikales Scrollen bei Bedarf */
+  direction: rtl; /* Rechts-nach-links Richtung Scrollbar */
+  scroll-behavior: smooth;
+}
+
+.ui-panel * {
+  direction: ltr; /* Inhalt wieder normal links-nach-rechts */
+}
+
+.oneColRow {
   background: white;
-  border: 1px solid black;
-  border-radius: 8px;
-  padding: 0 10px 0;
-  transition-duration: 0.3s;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 
-#saveCanvasBttn:hover {
-  background-color: lightgray;
+.oneColRow > div {
+  width: 100%; /* wichtig, damit das innere div die volle Breite einnimmt */
 }
 
-
-#cleanCanvasBttn {
-  font-family: "MartinaPlantijn";
-  font-weight: 400;
-  font-style: italic;
-  font-size: 26px;
+.twoColsRow {
+  display: grid;
+  grid-template-columns: 50% 50%;
   background: white;
-  border: 1px solid black;
-  border-radius: 8px;
-  padding: 0 10px 0;
-  transition-duration: 0.3s;
-} 
-
-#cleanCanvasBttn:hover {
-  background-color: lightgray;
+  align-items: baseline;
 }
 
-#buttonRow {
+.twoColsRow > div {
+  overflow: hidden;
+  background: white;
+  display: flex;
+}
+
+.creaseElements {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* optional */
+  align-items: center; /* zentriert das + vertikal im Container */
 }
 
-#widthInput, #heightInput {
-  font-size: 26px;
-  font-family:"MartinaPlantijn";
-  font-weight: 400;
-  font-style: normal;
-  border: none;
-  outline: none;
-  width: 60px;
+
+
+/* Buttons und Interaktion */
+
+.ui-button {
+  background: white;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 2px 10px 2px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  margin: 3px;
+  height: 30px;
+  font-family: 'NewEdge666';
+  font-size: 20px;
+  font-weight: 300;
 }
 
-#numButt-tilesX, #numButt-tilesY {
-  font-size: 26px;
-  font-family:"MartinaPlantijn";
-  font-weight: 400;
-  font-style: normal;
-  outline: none;
-  border: none;
-  width: fit-content;
+#saveCanvasBttn, 
+#cleanCanvasBttn, 
+#resetGridBttn, 
+#gridColorButton, 
+.cornerLabel,
+.checkboxLabel {
+  transition-duration: 0.3s;
+}
+
+#saveCanvasBttn:hover, 
+#cleanCanvasBttn:hover, 
+#resetGridBttn:hover, 
+#gridColorButton:hover,
+.cornerLabel:hover,
+.checkboxLabel:hover {
+  background-color: lightgray;
 }
 
 .hover-underline:hover {
@@ -268,28 +279,42 @@ input[type="number"] {
   cursor: pointer;
 }
 
+#increaseX, #decreaseX, #increaseY, #decreaseY {
+  background: none;
+  border: none;
+  border: 1px solid transparent; /* << Reserviert Platz für border on hover */
+}
 
-/* Remove Arrows/Spinners from Width Height Number Input */
-#widthInput::-webkit-outer-spin-button,
-#widthInput::-webkit-inner-spin-button,
-#heightInput::-webkit-outer-spin-button,
-#heightInput::-webkit-inner-spin-button {
+
+
+
+
+
+ /* Input-Felder & Slider */
+
+input[type="range"],
+input[type="number"] {
+  width: 100%;
+}
+
+#widthInput, #heightInput, #numButt-tilesX, #numButt-tilesY {
+  outline: none;
+  border: none;
+  text-align: center;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
 /* Firefox */
-#widthInput,
-#heightInput {
+input[type=number] {
   -moz-appearance: textfield;
 }
 
-
-input[type="radio"] {
-  margin-right: 6px;
-  transform: scale(1.2);
-  cursor: pointer;
-}
 
 input[type=range] {
   border: none;
@@ -321,4 +346,87 @@ input[type=range]::-moz-range-thumb {
   background: black;
   border: 0;
   border-radius: 0;
+}
+
+
+
+/* Checkboxen, Radio Buttons & Labels */
+
+input[type="radio"] {
+  margin-right: 6px;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.cornerLabel {
+  border: 1px solid #b4b4b4;
+  color: #b4b4b4;
+}
+
+input[type="radio"]:checked + label.cornerLabel {
+  color: black;
+  border-color: black;
+  background-color: white;
+}
+
+input[type="radio"]:checked + label.cornerLabel .blackSquare, 
+input[type="radio"]:checked + label.cornerLabel .blackCircle {
+  background-color: black;
+}
+
+input[name="cornerStyle"] {
+  display: none;
+}
+
+input[type=checkbox]+label.checkboxLabel {
+  border: 1px solid #b4b4b4;
+  color: #b4b4b4; 
+}
+
+input[type=checkbox]:checked + label.checkboxLabel {
+  color: black;
+  border-color: black;
+}
+
+#checkboxShowGrid {
+  display: none;
+}
+
+
+
+/* Dekorative Elemente */
+
+.blackSquare {
+  height: 0.7em;
+  width: 0.7em;
+  background-color: #b4b4b4;
+  margin-right: 5px;
+}
+
+.blackCircle {
+  height: 0.7em;
+  width: 0.7em;
+  background-color: #b4b4b4;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+
+
+/* Tastatur-Elemente */
+
+kbd {
+  background-color: #eee;
+  border-radius: 3px;
+  border: 1px solid #b4b4b4;
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.2),
+    0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+  color: #333;
+  display: inline-block;
+  font-size: 0.85em;
+  font-weight: 700;
+  line-height: 1;
+  padding: 2px 4px;
+  white-space: nowrap;
 }

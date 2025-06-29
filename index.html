@@ -15,45 +15,42 @@
 			<div class="ui-panel">
 				<div class="oneColRow">
 					<p class="nav-text">
-						<span><a class="hover-underline" href="#tool-begin">Tool,</a></span>
-						<span
-							><a class="hover-underline" href="#instructions"
-								>instructions,</a
-							></span
-						>
-						<a class="hover-underline" href="#idea">idea</a>
+						<a class="hover-underline" href="#tool-begin">TOOL,</a>
+						<a class="hover-underline" href="#instructions">INSTRUCTIONS,</a>
+						<a class="hover-underline" href="#idea">IDEA</a>
 					</p>
 				</div>
 
-				<div class="oneColRow" style="height: 30px"></div>
+				<div class="oneColRow" style="height: 50px"></div>
 
 				<div class="oneColRow">
 					<p class="ui-text">
-						<span style="font-style: italic">indent.it</span> is an intuitive
-						typesetting tool developed by Hannes Altmann that lets you
+						<span style="font-style: italic">Shiftable Type</span> is an
+						intuitive typesetting tool developed by Hannes Altmann that lets you
 						experiment with indentation of text lines. Designed for use ahead of
 						an editorial design project, it helps generate inspiration and
 						quickly visualize layout ideas.
 					</p>
 				</div>
 
-				<div class="oneColRow" style="height: 30px"></div>
+				<div class="oneColRow" style="height: 50px"></div>
 
 				<form>
 					<!-- Width -->
-					<div class="twoColsRow label-text" id="tool-begin">
+					<div class="twoColsRow groteskSmall" id="tool-begin">
 						<div>
-							<label for="widthSlider">Width</label>
+							<label for="widthSlider">WIDTH</label>
 						</div>
 						<div>
 							<input
+								class="groteskBig"
 								type="number"
 								id="widthInput"
 								min="200"
 								max="1300"
 								value="600"
 							/>
-							<span>px</span>
+							<span class="groteskBig">px</span>
 						</div>
 					</div>
 					<div class="oneColRow">
@@ -71,104 +68,114 @@
 					<div class="oneColRow" style="height: 30px"></div>
 
 					<!-- Height -->
-					<div class="twoColsRow label-text">
+					<div class="twoColsRow groteskSmall">
 						<div>
-							<label for="heightSlider">Height</label>
+							<label for="heightSlider">HEIGHT</label>
 						</div>
 						<div>
 							<input
+								class="groteskBig"
 								type="number"
 								id="heightInput"
 								min="200"
-								max="800"
 								value="600"
 							/>
-							<span>px</span>
+							<span class="groteskBig">px</span>
 						</div>
 					</div>
 					<div class="oneColRow">
-						<input
-							type="range"
-							id="heightSlider"
-							min="200"
-							max="800"
-							value="600"
-						/>
+						<div>
+							<input type="range" id="heightSlider" min="200" value="600" />
+						</div>
 					</div>
 				</form>
 
 				<div class="oneColRow" style="height: 30px"></div>
 
-				<div class="twoColsRow label-text">
+				<div class="twoColsRow">
 					<div>
-						<label for="numButt-tilesX">Tiles X</label>
+						<label class="groteskSmall" for="numButt-tilesX">TILES X</label>
 					</div>
-					<div>
+					<div class="creaseElements">
+						<button class="groteskBig" id="decreaseX">-</button>
 						<input
+							class="groteskBig"
 							type="number"
 							id="numButt-tilesX"
 							value="8"
 							min="4"
-							max="50"
+							max="200"
 						/>
+						<button class="groteskBig" id="increaseX">+</button>
 					</div>
 				</div>
-				<div class="twoColsRow label-text">
+				<div class="twoColsRow">
 					<div>
-						<label for="numButt-tilesY">Tiles Y</label>
+						<label class="groteskSmall" for="numButt-tilesY">TILES Y</label>
 					</div>
-					<div>
+					<div class="creaseElements">
+						<button class="groteskBig" id="decreaseY">-</button>
 						<input
+							class="groteskBig"
 							type="number"
 							id="numButt-tilesY"
 							value="8"
 							min="4"
-							max="50"
+							max="200"
 						/>
-					</div>
-				</div>
-				<div class="oneColRow" style="height: 20px"></div>
-				<div class="oneColRow" id="buttonRow">
-					<button type="button" id="saveCanvasBttn">Save</button>
-					<button type="button" id="cleanCanvasBttn">Clear Canvas</button>
-					<button type="button" id="resetGridButton">Reset</button>
-				</div>
-
-				<div class="oneColRow" style="height: 20px"></div>
-
-				<div class="oneColRow">
-					<p class="label-text">Ecken-Stil</p>
-					<label class="ui-text">
-						<input
-							type="radio"
-							name="cornerStyle"
-							value="sharp"
-							onchange="console.log('Auswahl: sharp')"
-							checked
-						/>
-						Kantig </label
-					><br />
-					<label class="ui-text">
-						<input
-							type="radio"
-							name="cornerStyle"
-							value="rounded"
-							onchange="console.log('Auswahl: round')"
-						/>
-						Abgerundet
-					</label>
-				</div>
-
-				<div class="oneColRow" style="height: 20px"></div>
-
-				<div class="oneColRow">
-					<div>
-						<input type="checkbox" id="checkboxShowGrid" checked />
-						<label for="checkboxShowGrid">Show Grid</label>
+						<button class="groteskBig" id="increaseY">+</button>
 					</div>
 				</div>
 
-				<div class="oneColRow" style="height: 30px"></div>
+				<div class="oneColRow" style="height: 50px"></div>
+
+				<div class="oneColRow">
+					<button type="button" id="saveCanvasBttn" class="ui-button">
+						SAVE
+					</button>
+
+					<button type="button" id="cleanCanvasBttn" class="ui-button">
+						CLEAR CANVAS
+					</button>
+
+					<button type="button" id="resetGridBttn" class="ui-button">
+						RESET
+					</button>
+
+					<input
+						type="radio"
+						id="sharpCorner"
+						name="cornerStyle"
+						value="sharp"
+						checked
+					/>
+					<label for="sharpCorner" class="ui-button cornerLabel"
+						><span class="blackSquare"></span>SHARP</label
+					>
+					<input
+						type="radio"
+						id="roundCorner"
+						name="cornerStyle"
+						value="rounded"
+					/>
+					<label for="roundCorner" class="ui-button cornerLabel"
+						><span class="blackCircle"></span>ROUND</label
+					>
+
+					<input type="checkbox" id="checkboxShowGrid" checked />
+					<label for="checkboxShowGrid" class="ui-button checkboxLabel"
+						>DISPLAY GRID</label
+					>
+					<button class="ui-button" id="gridColorButton">COLOR</button>
+					<input
+						type="color"
+						id="gridColorPicker"
+						style="opacity: 0; width: 0; height: 0; pointer-events: none"
+						value="#c8c8c8"
+					/>
+				</div>
+
+				<div class="oneColRow" style="height: 50px"></div>
 
 				<div class="oneColRow" id="instructions">
 					<p class="ui-text">
