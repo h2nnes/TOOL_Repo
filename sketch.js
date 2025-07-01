@@ -529,7 +529,7 @@ function changeValue(inputId, delta) {
 
 function startAutoRepeat(inputId, delta) {
   changeValue(inputId, delta); // Sofort ändern
-  repeatIntervalId = setInterval(() => changeValue(inputId, delta), 50); // Dann wiederholen
+  repeatIntervalId = setInterval(() => changeValue(inputId, delta), 20); // Dann wiederholen
 }
 
 function stopAutoRepeat() {

@@ -13,23 +13,24 @@
 	<body>
 		<main>
 			<div class="ui-panel">
-				<div class="oneColRow">
+				<div class="oneColRow" id="page-begin">
 					<p class="nav-text">
 						<a class="hover-underline" href="#tool-begin">TOOL,</a>
-						<a class="hover-underline" href="#instructions">INSTRUCTIONS,</a>
-						<a class="hover-underline" href="#idea">IDEA</a>
+						<a class="hover-underline" href="#instructions-begin"
+							>INSTRUCTIONS,</a
+						>
+						<a class="hover-underline" href="#idea-begin">IDEA</a>
 					</p>
 				</div>
 
-				<div class="oneColRow" style="height: 50px"></div>
+				<div class="oneColRow" style="height: 30px"></div>
 
 				<div class="oneColRow">
 					<p class="ui-text">
-						<span style="font-style: italic">Shiftable Type</span> is an
-						intuitive typesetting tool developed by Hannes Altmann that lets you
-						experiment with indentation of text lines. Designed for use ahead of
-						an editorial design project, it helps generate inspiration and
-						quickly visualize layout ideas.
+						<span style="font-style: italic">Shiftable Type</span> is a grid
+						based typesetting tool developed by Hannes Altmann. Designed for use
+						in the early stages of an editorial design project, it helps quickly
+						sketch, shift, and visualize text arrangement ideas.
 					</p>
 				</div>
 
@@ -37,8 +38,8 @@
 
 				<form>
 					<!-- Width -->
-					<div class="twoColsRow groteskSmall" id="tool-begin">
-						<div>
+					<div class="twoColsRow" id="tool-begin">
+						<div class="groteskSmall">
 							<label for="widthSlider">WIDTH</label>
 						</div>
 						<div>
@@ -68,8 +69,8 @@
 					<div class="oneColRow" style="height: 30px"></div>
 
 					<!-- Height -->
-					<div class="twoColsRow groteskSmall">
-						<div>
+					<div class="twoColsRow">
+						<div class="groteskSmall">
 							<label for="heightSlider">HEIGHT</label>
 						</div>
 						<div>
@@ -109,6 +110,9 @@
 						<button class="groteskBig" id="increaseX">+</button>
 					</div>
 				</div>
+
+				<hr class="divider" />
+
 				<div class="twoColsRow">
 					<div>
 						<label class="groteskSmall" for="numButt-tilesY">TILES Y</label>
@@ -127,6 +131,8 @@
 					</div>
 				</div>
 
+				<hr class="divider" />
+
 				<div class="oneColRow" style="height: 50px"></div>
 
 				<div class="oneColRow">
@@ -135,7 +141,7 @@
 					</button>
 
 					<button type="button" id="cleanCanvasBttn" class="ui-button">
-						CLEAR CANVAS
+						CLEAR
 					</button>
 
 					<button type="button" id="resetGridBttn" class="ui-button">
@@ -150,7 +156,7 @@
 						checked
 					/>
 					<label for="sharpCorner" class="ui-button cornerLabel"
-						><span class="blackSquare"></span>SHARP</label
+						><span></span>&#x25A0; SHARP</label
 					>
 					<input
 						type="radio"
@@ -159,12 +165,12 @@
 						value="rounded"
 					/>
 					<label for="roundCorner" class="ui-button cornerLabel"
-						><span class="blackCircle"></span>ROUND</label
+						><span></span>&#x25CF; ROUND</label
 					>
 
 					<input type="checkbox" id="checkboxShowGrid" checked />
 					<label for="checkboxShowGrid" class="ui-button checkboxLabel"
-						>DISPLAY GRID</label
+						>GRID</label
 					>
 					<button class="ui-button" id="gridColorButton">COLOR</button>
 					<input
@@ -177,58 +183,119 @@
 
 				<div class="oneColRow" style="height: 50px"></div>
 
-				<div class="oneColRow" id="instructions">
+				<div class="twoColsRow groteskSmall" id="instructions-begin">
+					<div><p>INSTRUCTIONS</p></div>
+					<div style="display: flex; justify-content: flex-end">
+						<a href="#page-begin">&#x2191;</a>
+					</div>
+				</div>
+
+				<div class="oneColRow">
 					<p class="ui-text">
-						<kbd>Click <i class="fa fa-mouse-pointer"></i></kbd> on a tile to
-						select it. <kbd>Click <i class="fa fa-mouse-pointer"></i></kbd> it
-						again to deselect. You can select multiple tiles in a row by
-						clicking and dragging across them horizontally, then releasing the
-						mouse button. To deselect multiple tiles, use the same gesture on
-						already selected ones. To move a tile or an entire row horizontally
-						along the grid, hold <kbd>Shift</kbd> +
-						<kbd>Click <i class="fa fa-mouse-pointer"></i></kbd> on it while
-						dragging left or right. If you want to select an entire block of
-						tiles, hold <kbd>Space</kbd> and draw a selection rectangle with
-						your mouse. Release to confirm the selection.
+						Click on a tile in the grid to fill it. Click on it again to erase
+						your selection. <br />
+						<br />
+						To (faster) select multiple tiles in a row, click and hold on a
+						tile, then drag sideways while keeping the mouse button pressed
+						(like you would use a digital paint brush). <br />
+						<br />
+						Do the same on adjacent filled tiles to deselect them one by one.
+						<br /><br />
+						To quickly fill larger sections of the grid, hold
+						<span class="martinaPlantijnSmallCapitals"
+							>&#x00BB; SPACE &#x00AB;</span
+						>
+						and the left mouse button, then drag to draw a rectangle over the
+						area you want to fill. Release the mouse button to confirm your
+						selection. <br /><br />
+						How to move single or adjacent filled tiles horizontally on the
+						grid?<br /><br />
+						Click and hold on the tile or anywhere on the row you want to move.
+						While holding the mouse button, press and hold the
+						<span class="martinaPlantijnSmallCapitals">SHIFT</span> key, then
+						move your cursor sideways in the direction you want to shift the
+						row. The selected content will follow your cursor as you move.
+					</p>
+				</div>
+
+				<div class="oneColRow" style="height: 50px"></div>
+
+				<div class="twoColsRow groteskSmall" id="idea-begin">
+					<div><p>IDEA</p></div>
+					<div style="display: flex; justify-content: flex-end">
+						<a href="#page-begin">&#x2191;</a>
+					</div>
+				</div>
+
+				<div class="oneColRow">
+					<p class="ui-text">
+						To truly focus on the act of typesetting itself — and to allow full
+						attention on the forms and structures that emerge through text
+						arrangement — the text lines are abstracted into simple geometric
+						shapes (rectangle or ellipse). <br /><br />
+						This simplification and the system’s core modular, rhythmic
+						mechanics draw inspiration from the abacus (ancient counting tool
+						consisting of blocks sliding on rods)
+					</p>
+				</div>
+
+				<div class="oneColRow" style="height: 50px"></div>
+
+				<div class="oneColRow ui-img">
+					<img src="Images/abacus.webp" alt="the abacus" style="width: 100px" />
+				</div>
+
+				<div class="oneColRow" style="height: 50px"></div>
+
+				<div class="oneColRow">
+					<p class="ui-text">
+						Another aspect carried over from the abacus metaphor is the
+						restricted movement: elements can only be drawn and shifted
+						horizontally. This keeps the tool from turning into a freeform
+						drawing app. <br /><br />
+						The way the tool is operated is rooted in the feel and logic of
+						manual typesetting from the letterpress era, when compositors
+						arranged movable type by hand on composing sticks.
 					</p>
 				</div>
 
 				<div class="oneColRow" style="height: 30px"></div>
 
-				<div class="oneColRow">
-					<p class="ui-text" id="idea">
-						My tool is intended to be used to play intuitively with typesetting
-						(particularly with indentations of text lines). It mimics the
-						functionality of the abacus, the interface is designed very minimal
-						and straightforward to guarantee an experimental user experience.
-						The output can be seen as „templates“ of experimental (or
-						conventional) text line arrangements that can serve as inspiration
-						for your next editorial typesetting project.
-					</p>
-				</div>
-
-				<div class="oneColRow" style="height: 30px"></div>
-
-				<div class="oneColRow">
-					<img
-						src="Images/abacus_historic.png"
-						alt="the abacus"
-						style="width: 200px"
-					/>
+				<div class="oneColRow ui-img">
+					<img src="Images/tipo.webp" alt="the abacus" style="width: 200px" />
 				</div>
 
 				<div class="oneColRow" style="height: 30px"></div>
 
 				<div class="oneColRow">
 					<p class="ui-text">
-						The idea for the tool really came from a personal desire to have an
-						environment where I could test, experiment and try out new things
-						within editorial typesetting and to be able to do this as fast,
-						intuitive and effortless as possible (unlike in InDesign). For one,
-						the realization is inspired by the mechanics of the abacus but also
-						by manual typesetting methods from the letterpress era, when movable
-						type (metal sorts) was composed by hand on a composing stick for
-						each page by workers called compositors.
+						A feeling I wanted to incorporate was the reversibility of manual
+						typesetting — the fact that each letter could be removed, replaced,
+						or rearranged at any time. This flexibility informed how the tool
+						handles editing: changes are non-destructive, and everything remains
+						movable and adjustable throughout the process.
+					</p>
+				</div>
+
+				<div class="oneColRow" style="height: 30px"></div>
+
+				<div class="oneColRow groteskSmall">
+					<p>IDEA</p>
+				</div>
+
+				<div class="oneColRow">
+					<p class="ui-text">
+						The idea for the tool came from a personal desire to have an
+						environment where I could intuitively explore and play within
+						typesetting — to test ideas, try out unconventional approaches, and
+						do so as quickly and effortlessly as possible. <br />
+						<br />
+						Designed for use ahead of an editorial design project, the tool is
+						meant to spark inspiration and make it easy to visualize layout
+						drafts — for example, during a team meeting. <br /><br />
+						I made this tool to help myself in my own design practice — and
+						hopefully it’ll be useful for other students and designers working
+						on similar projects too :)
 					</p>
 				</div>
 
@@ -236,9 +303,11 @@
 
 				<div class="oneColRow">
 					<p class="mini-text">
-						This application is part of the Project Module "TOOLS: Shapes
-						without meaning." Supervision: Stephanie Specht. SoSe 2025.
-						Department Typography and Type Design. Bauhaus Universität Weimar.
+						This application was developed as part of the project module
+						<span style="font-style: italic">TOOLS: Shapes Without Meaning</span
+						>, supervised by Stephanie Specht, during the summer semester 2025
+						at the Department of Typography and Type Design, <br />
+						Bauhaus University Weimar.
 					</p>
 				</div>
 			</div>
