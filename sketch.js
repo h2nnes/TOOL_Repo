@@ -128,6 +128,7 @@ function setup() {
 
 function draw() {
   background(255); // hellgrauer Hintergrund
+  translate(1, 1); // alles um 1px nach innen verschieben
 
   if (checkboxShowGrid.checked) { // zeichnet Grid inkl. schwarz-weißer Zellen
     drawGrid(); // Nur zeichnen, wenn Checkbox aktiviert ist
@@ -450,17 +451,17 @@ function detectBlocks() {
   }
 }
 
+
 function saveCurrentCanvas() {
-  // Speichert das Canvas als PNG mit aktuellem Datum im Dateinamen
   let now = new Date();
-
-  // Teile des Datums extrahieren und zweistellig formatieren
-  let yy = String(now.getFullYear()).slice(2); // nur die letzten 2 Ziffern des Jahres
-  let mm = String(now.getMonth() + 1).padStart(2, '0'); // Monate sind 0-basiert
+  let yy = String(now.getFullYear()).slice(2);
+  let mm = String(now.getMonth() + 1).padStart(2, '0');
   let dd = String(now.getDate()).padStart(2, '0');
+  let hh = String(now.getHours()).padStart(2, '0');
+  let min = String(now.getMinutes()).padStart(2, '0');
+  let ss = String(now.getSeconds()).padStart(2, '0');
 
-  let filename = `${yy}${mm}${dd}_myCanvas`;
-
+  let filename = `${yy}${mm}${dd}_${hh}${min}${ss}_myCanvas`;
   saveCanvas(filename, 'png');
 }
 
