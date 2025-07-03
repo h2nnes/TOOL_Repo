@@ -55,6 +55,8 @@ let marqueeEndY = null;
 let isMarqueeSelecting = false;
 
 function setup() {
+
+
   const { maxWidth, maxHeight } = getAvailableCanvasSize();
 
   // Max-Werte setzen
@@ -154,7 +156,6 @@ function drawBlocks() {
   const cornerStyle = selected ? selected.value : "sharp";
   const cornerRadius = (cornerStyle === "rounded") ? 50 : 0;
 
-  console.log("Neuer Eckenstil:", cornerStyle, cornerRadius);
   fill(0);
 
 
@@ -242,6 +243,7 @@ function mousePressed() {
     gridState[clickedColumn][clickedRow] = initialState;
 
     detectBlocks(); // Blöcke neu erkennen
+    redraw();
   }
 }
 
