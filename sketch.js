@@ -665,9 +665,6 @@ function clampHeightInput(event) {
 
 
 
-
-
-
 // ----------- Wiederholtes Klicken bei Halten der Maus für X und Y -----------
 
 let repeatIntervalId = null;
