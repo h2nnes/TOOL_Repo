@@ -93,6 +93,12 @@ function setup() {
   saveCanvasButton.addEventListener("click", saveCurrentCanvas);
   resetButton.addEventListener("click", resetGridToDefaults);
 
+
+[numButtTilesX, numButtTilesY].forEach(input => {
+  input.addEventListener("input", clampTileInputWhileTyping);
+  input.addEventListener("keydown", clampTileInputWhileTyping);
+});
+
   toTopButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
       document.getElementById("scrollContainer").scrollTo({
@@ -522,13 +528,41 @@ function clamp(val, min, max) {
 
 // Funktion zur Begrenzung des Tile Number Inputs
 function clampTileInputWhileTyping(event) {
-  let val = parseInt(event.target.value);
-  if (isNaN(val) || val < 1) val = 1;
-  if (val > MAX_TILES) val = MAX_TILES;
-  event.target.value = val;
+  const input = event.target;
+  const raw = input.value.trim();
 
-  adjustGridFromSliders();
+  // Wenn Enter gedrückt wird → prüfen
+  if (event.type === "keydown" && event.key === "Enter") {
+    let val = parseInt(raw);
+
+    // Leerer String oder ungültiger Wert → auf 1 setzen
+    if (raw === "" || isNaN(val) || val < 1) {
+      input.value = 1;
+    } else if (val > MAX_TILES) {
+      input.value = MAX_TILES;
+    } else {
+      input.value = val; // gültiger Wert
+    }
+
+    adjustGridFromSliders();
+    return;
+  }
+
+  // Während des Tippens (input) → Clamp, aber nur wenn nicht leer
+  if (event.type === "input") {
+    if (raw === "") return;
+
+    let val = parseInt(raw);
+    if (isNaN(val)) return;
+
+    if (val < 1) val = 1;
+    if (val > MAX_TILES) val = MAX_TILES;
+
+    input.value = val;
+    adjustGridFromSliders();
+  }
 }
+
 
 
 
