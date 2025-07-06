@@ -55,8 +55,9 @@ let marqueeEndX = null;
 let marqueeEndY = null;
 let isMarqueeSelecting = false;
 
-function setup() {
 
+
+function setup() {
 
   const { maxWidth, maxHeight } = getAvailableCanvasSize();
 
@@ -87,16 +88,14 @@ function setup() {
   heightSlider.addEventListener("input", resizeCanvasFromSliders);
   numButtTilesX.addEventListener("input", adjustGridFromSliders);
   numButtTilesY.addEventListener("input", adjustGridFromSliders);
-  numButtTilesX.addEventListener('input', clampTileInputWhileTyping);
-  numButtTilesY.addEventListener('input', clampTileInputWhileTyping);
   clearCanvasButton.addEventListener("click", clearGrid);
   saveCanvasButton.addEventListener("click", saveCurrentCanvas);
   resetButton.addEventListener("click", resetGridToDefaults);
 
 
 [numButtTilesX, numButtTilesY].forEach(input => {
-  input.addEventListener("input", clampTileInputWhileTyping);
-  input.addEventListener("keydown", clampTileInputWhileTyping);
+  input.addEventListener("input", clampTileInput);
+  input.addEventListener("keydown", clampTileInput);
 });
 
   toTopButtons.forEach((button) => {
@@ -113,6 +112,10 @@ function setup() {
     resizeCanvasFromSliders();
   });
 
+  widthInput.addEventListener("input", clampWidthInputUnified);
+  widthInput.addEventListener("keydown", clampWidthInputUnified);
+
+
   widthSlider.addEventListener("input", () => {
     widthInput.value = widthSlider.value;
     resizeCanvasFromSliders();
@@ -122,6 +125,9 @@ function setup() {
     heightSlider.value = heightInput.value;
     resizeCanvasFromSliders();
   });
+
+  heightInput.addEventListener("keydown", clampHeightInput);
+  heightInput.addEventListener("input", clampHeightInput);
 
   heightSlider.addEventListener("input", () => {
     heightInput.value = heightSlider.value;
@@ -527,7 +533,7 @@ function clamp(val, min, max) {
 
 
 // Funktion zur Begrenzung des Tile Number Inputs
-function clampTileInputWhileTyping(event) {
+function clampTileInput(event) {
   const input = event.target;
   const raw = input.value.trim();
 
@@ -545,6 +551,9 @@ function clampTileInputWhileTyping(event) {
     }
 
     adjustGridFromSliders();
+
+    input.blur(); // entfernt den Fokus, Cursor verschwindet
+
     return;
   }
 
@@ -562,6 +571,94 @@ function clampTileInputWhileTyping(event) {
     adjustGridFromSliders();
   }
 }
+
+
+function clampWidthInputUnified(event) {
+  const input = event.target;
+  const raw = input.value.trim();
+
+  const min = MIN_WIDTH;               // z.B. 200
+  const max = parseInt(widthInput.max); // z.B. 1280
+
+  if ((event.type === "keydown" && event.key === "Enter") || event.type === "blur") {
+    let val = parseInt(raw);
+
+    if (raw === "" || isNaN(val) || val < min) {
+      input.value = min;
+    } else if (val > max) {
+      input.value = max;
+    } else {
+      input.value = val;
+    }
+
+    widthSlider.value = input.value;
+    resizeCanvasFromSliders?.();
+
+    input.blur(); // entfernt den Fokus, Cursor verschwindet
+
+    return;
+  }
+
+  if (event.type === "input") {
+    let val = parseInt(raw);
+
+    if (raw === "" || isNaN(val)) return;
+
+    // Sofort clampen: Negative Zahlen und 0 auf min setzen
+    if (val <= 0) {
+      input.value = min;
+    }
+    // Sofort clampen: Werte über max auf max setzen
+    else if (val > max) {
+      input.value = max;
+    }
+    // Werte zwischen 1 und min-1 werden NICHT gecampt, also nichts tun
+    // Damit der User diese Werte noch eintippen kann
+  }
+}
+
+function clampHeightInput(event) {
+  const input = event.target;
+  const raw = input.value.trim();
+
+  const min = MIN_HEIGHT;               // z.B. 200
+  const max = parseInt(heightInput.max); // z.B. 1280
+
+  if ((event.type === "keydown" && event.key === "Enter") || event.type === "blur") {
+    let val = parseInt(raw);
+
+    if (raw === "" || isNaN(val) || val < min) {
+      input.value = min;
+    } else if (val > max) {
+      input.value = max;
+    } else {
+      input.value = val;
+    }
+
+    heightSlider.value = input.value;
+    resizeCanvasFromSliders?.();
+
+    if (event.type === "keydown" && event.key === "Enter") {
+      input.blur(); // Cursor weg bei Enter
+    }
+
+    return;
+  }
+
+  if (event.type === "input") {
+    let val = parseInt(raw);
+
+    if (raw === "" || isNaN(val)) return;
+
+    if (val <= 0) {
+      input.value = min;
+    } else if (val > max) {
+      input.value = max;
+    }
+    // Werte zwischen 1 und min-1 werden nicht gecampt
+  }
+}
+
 
 
 
