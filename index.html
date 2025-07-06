@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<main>
-			<div class="ui-panel">
+			<div class="ui-panel" id="scrollContainer">
 				<div class="oneColRow" id="page-begin">
 					<p class="nav-text">
 						<a class="hover-underline" href="#tool-begin">TOOL</a>
@@ -172,7 +172,7 @@
 					<label for="checkboxShowGrid" class="ui-button checkboxLabel"
 						>GRID</label
 					>
-					<button class="ui-button" id="gridColorButton">COLOR</button>
+					<button class="ui-button" id="gridColorButton">GRID COLOR</button>
 					<input
 						type="color"
 						id="gridColorPicker"
@@ -186,14 +186,14 @@
 				<div class="twoColsRow groteskSmall" id="instructions-begin">
 					<div><p>INSTRUCTIONS</p></div>
 					<div style="display: flex; justify-content: flex-end">
-						<a href="#page-begin">&#x2191;</a>
+						<a href="#" class="scrollToTop">&#x2191;</a>
 					</div>
 				</div>
 
 				<div class="oneColRow">
 					<p class="ui-text">
-						Click on a tile in the grid to fill it. Click on it again to erase
-						your selection. <br />
+						Click on a tile in the grid to fill it. Click it again to erase your
+						selection. <br />
 						<br />
 						To (faster) select multiple tiles in a row, click and hold on a
 						tile, then drag sideways while keeping the mouse button pressed
@@ -204,14 +204,20 @@
 						To quickly fill larger sections of the grid, hold
 						<span class="martinaPlantijnSmallCapitals"> SPACE</span>
 						and the left mouse button, then drag to draw a rectangle over the
-						area you want to fill. Release the mouse button to confirm your
-						selection. <br /><br />
-						To move single or adjacent filled tiles horizontally on the grid,
-						click and hold on the tile or anywhere on the row you want to move.
-						While holding the mouse button, press and hold the
-						<span class="martinaPlantijnSmallCapitals">SHIFT</span> key, then
-						move your cursor sideways in the direction you want to shift the
-						row. The selected content will follow your cursor as you move.
+						area you want to fill. Release the mouse to confirm your selection.
+						<br /><br />
+						To move single or adjacent tiles horizontally on the grid, click and
+						hold on the tile or anywhere on the row you want to move. While
+						holding the mouse button, press and hold
+						<span class="martinaPlantijnSmallCapitals">SHIFT</span> and move
+						your cursor sideways in the direction you want to shift the row. The
+						selected tile(s) will follow your cursor as you move.
+						<br />
+						<br />
+						<span style="font-style: italic"
+							>(For the best experience, use an external mouse or activate
+							&#x201E;Three Finger Drag&#x201D; on your trackpad.)</span
+						>
 					</p>
 				</div>
 
@@ -220,19 +226,20 @@
 				<div class="twoColsRow groteskSmall" id="idea-begin">
 					<div><p>CONCEPT</p></div>
 					<div style="display: flex; justify-content: flex-end">
-						<a href="#page-begin">&#x2191;</a>
+						<a href="#" class="scrollToTop">&#x2191;</a>
 					</div>
 				</div>
 
 				<div class="oneColRow">
 					<p class="ui-text">
-						To truly focus on the act of typesetting itself — and to allow full
-						attention on the forms and structures that emerge through text
-						arrangement — the text lines are abstracted into simple geometric
-						shapes. <br /><br />
-						This simplification and the system’s core modular, rhythmic
-						mechanics draw inspiration from the abacus (ancient counting tool
-						consisting of blocks sliding on rods).
+						To truly focus on the act of typesetting itself &#x2014; and to
+						allow full attention on the structures and forms that emerge through
+						text arrangement and composition &#x2014; the text lines are
+						abstracted into simple geometric shapes. <br /><br />
+						This simplification and the system&#x2019;s core modular, rhythmic
+						mechanics draw inspiration from the
+						<span style="font-style: italic">abacus</span> (ancient counting
+						tool consisting of blocks sliding on rods).
 					</p>
 				</div>
 
@@ -247,12 +254,12 @@
 				<div class="oneColRow">
 					<p class="ui-text">
 						Another aspect carried over from the abacus metaphor is the
-						restricted movement: elements can only be drawn and shifted
-						horizontally. This keeps the tool from turning into a freeform
-						drawing app. <br /><br />
-						The way the tool is operated is rooted in the feel and logic of
-						manual typesetting from the letterpress era, when compositors
-						arranged movable type by hand on composing sticks.
+						restricted movement: Elements can only be drawn and shifted
+						horizontally. <br /><br />
+						The way the tool operates is meant to evoke the feel and logic of
+						manual typesetting from the letterpress era, when workers called
+						compositors arranged movable type (metal sorts) by hand on composing
+						sticks.
 					</p>
 				</div>
 
@@ -266,26 +273,32 @@
 
 				<div class="oneColRow">
 					<p class="ui-text">
-						A feeling I wanted to incorporate was the reversibility of manual
-						typesetting — the fact that each letter could be removed, replaced,
-						or rearranged at any time. This flexibility informed how the tool
-						handles editing: changes are non-destructive, and everything remains
-						movable and adjustable throughout the process.
+						One key characteristic frome these times I wanted to incorporate is
+						the reversibility of manual typesetting &#x2014; the fact that each
+						letter could be removed, replaced, or rearranged at any time. This
+						flexibility informed how the tool handles editing: Changes are
+						non-destructive, and everything remains movable and adjustable
+						throughout the process.
 					</p>
 				</div>
 
 				<div class="oneColRow" style="height: 30px"></div>
 
-				<div class="oneColRow groteskSmall">
-					<p>IDEA</p>
+				<div class="twoColsRow groteskSmall">
+					<div><p>IDEA</p></div>
+					<div style="display: flex; justify-content: flex-end">
+						<a href="#" class="scrollToTop">&#x2191;</a>
+					</div>
 				</div>
 
 				<div class="oneColRow">
 					<p class="ui-text">
 						The idea for the tool came from a personal desire to have an
 						environment where I could intuitively explore and play within
-						typesetting — to test ideas, try out unconventional approaches, and
-						do so as quickly and effortlessly as possible. <br />
+						typesetting &#x2014; to test ideas, try out unconventional
+						approaches and to be able to do this as quickly and effortlessly as
+						possible.
+						<br />
 						<br />
 						Designed for use ahead of an editorial design project, the tool is
 						meant to spark inspiration and make it easy to visualize layout
@@ -300,6 +313,16 @@
 
 				<div class="oneColRow">
 					<p class="mini-text">
+						Typefaces in use: <br />
+						Overused Grotesk by RandomMaerks <br />
+						Martina Plantijn by Klim Type Foundry
+					</p>
+				</div>
+
+				<div class="oneColRow" style="height: 15px"></div>
+
+				<div class="oneColRow">
+					<p class="mini-text">
 						This application was developed as part of the project module
 						<span style="font-style: italic">TOOLS: Shapes Without Meaning</span
 						>, supervised by Stephanie Specht, during the summer semester 2025
@@ -311,6 +334,11 @@
 
 			<div id="artboard">
 				<div id="canvasWrapper"></div>
+			</div>
+
+			<!-- Screensaver Overlay -->
+			<div id="screensaver">
+				<video id="screensaverVideo" autoplay muted loop></video>
 			</div>
 		</main>
 		<script src="sketch.js"></script>

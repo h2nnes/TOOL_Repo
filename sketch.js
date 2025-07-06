@@ -20,6 +20,7 @@ var clearCanvasButton = document.getElementById("cleanCanvasBttn");
 var saveCanvasButton = document.getElementById("saveCanvasBttn");
 var resetButton = document.getElementById("resetGridBttn");
 var checkboxShowGrid = document.getElementById("checkboxShowGrid");
+const toTopButtons = document.querySelectorAll(".scrollToTop");
 
 const gridColorButton = document.getElementById("gridColorButton");
 const gridColorPicker = document.getElementById("gridColorPicker");
@@ -71,6 +72,9 @@ function setup() {
   var canvas = createCanvas(parseInt(widthSlider.value), parseInt(heightSlider.value)); // Zeichenfläche erstellen
   canvas.parent("canvasWrapper");
 
+  translate(1, 1); // alles um 1px nach innen verschieben
+
+
   tilesX = parseInt(numButtTilesX.value);
   tilesY = parseInt(numButtTilesY.value);
 
@@ -88,6 +92,15 @@ function setup() {
   clearCanvasButton.addEventListener("click", clearGrid);
   saveCanvasButton.addEventListener("click", saveCurrentCanvas);
   resetButton.addEventListener("click", resetGridToDefaults);
+
+  toTopButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      document.getElementById("scrollContainer").scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  });
 
   widthInput.addEventListener("input", () => {
     widthSlider.value = widthInput.value;
@@ -128,13 +141,17 @@ function setup() {
 
 function draw() {
   background(255); // hellgrauer Hintergrund
-  translate(1, 1); // alles um 1px nach innen verschieben
+
+  push();
+  translate(1, 1); // Verschiebung für 1px Rand
 
   if (checkboxShowGrid.checked) { // zeichnet Grid inkl. schwarz-weißer Zellen
     drawGrid(); // Nur zeichnen, wenn Checkbox aktiviert ist
   } 
   drawBlocks();
   drawMarquee();
+
+  pop();
 }
 
 function drawGrid() {
@@ -478,8 +495,9 @@ function initializeEmptyGrid() {
 
 
 function detectTileSize() {
-  tileW = width / tilesX;
-  tileH = height / tilesY;
+  // -2 ist für innenabstand zum Canvas von je 1 px von jeder Seite
+  tileW = (width - 2) / tilesX;
+  tileH = (height - 2) / tilesY;
 }
 
 
@@ -551,4 +569,52 @@ document.getElementById("decreaseY").addEventListener("mousedown", () => startAu
 // Stoppen bei Maus loslassen oder Mausverlieren
 document.addEventListener("mouseup", stopAutoRepeat);
 document.addEventListener("mouseleave", stopAutoRepeat);
+
+
+
+
+
+
+
+
+
+// === Screensaver ===
+let idleTimeout = null;
+let isScreensaverEnabled = true;
+const screensaverDelay = 60000; // 1 Minute
+const screensaver = document.getElementById("screensaver");
+const video = document.getElementById("screensaverVideo");
+
+// Setze das Video (Pfad ggf. anpassen)
+video.src = "Videos/Screensaver_TOOL.mp4";
+
+// Screensaver anzeigen
+function showScreensaver() {
+  if (!isScreensaverEnabled) return;
+  screensaver.style.display = "block";
+  video.play();
+}
+
+// Screensaver ausblenden
+function hideScreensaver() {
+  screensaver.style.display = "none";
+  video.pause();
+  video.currentTime = 0;
+}
+
+// Timer zurücksetzen
+function resetIdleTimer() {
+  clearTimeout(idleTimeout);
+  hideScreensaver();
+  idleTimeout = setTimeout(showScreensaver, screensaverDelay);
+}
+
+// Alle Interaktionen, die den Timer zurücksetzen
+["mousemove", "mousedown", "keydown", "touchstart"].forEach(event => {
+  document.addEventListener(event, resetIdleTimer);
+});
+
+// Timer beim Laden der Seite starten
+resetIdleTimer();
+
 
